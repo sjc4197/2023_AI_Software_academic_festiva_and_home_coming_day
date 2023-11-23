@@ -8,10 +8,8 @@ class RandomNumberGeneratorApp:
         self.master.title("AI소프트웨어학과 경품 추첨기")
         self.master.geometry("1000x300")
 
-        # GUI 요소 초기화
         self.init_gui()
 
-        # RandomNumberGenerator 인스턴스 생성
         self.rng = RandomNumberGenerator()
 
     def init_gui(self):
