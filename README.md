@@ -1,4 +1,4 @@
-# 2023_AI_Software_academic_festiva_and_home_coming_day
+# 2023_AI_Software_academic_festival_and_home_coming_day
 ![1_a30Ud018svceza49l6hdj04_l9ehx](https://github.com/sjc4197/2023_AI_Software_academic_festiva_and_home_coming_day/assets/63084925/37559fb4-5bbe-48ae-91ba-e8f194dfb2a1)
 
 <hr>
