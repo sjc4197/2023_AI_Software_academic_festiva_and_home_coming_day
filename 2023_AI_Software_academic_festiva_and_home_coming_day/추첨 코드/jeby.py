@@ -2,6 +2,45 @@ import tkinter as tk
 from tkinter import messagebox
 from random import randint
 
+class RandomNumberGeneratorApp:
+    def __init__(self, master):
+        self.master = master
+        self.master.title("AI소프트웨어학과 경품 추첨기")
+        self.master.geometry("1000x300")
+
+        # GUI 요소 초기화
+        self.init_gui()
+
+        # RandomNumberGenerator 인스턴스 생성
+        self.rng = RandomNumberGenerator()
+
+    def init_gui(self):
+        self.label_max_number = tk.Label(self.master, text="최대 숫자:")
+        self.label_max_number.pack()
+
+        self.entry_max_number = tk.Entry(self.master)
+        self.entry_max_number.pack()
+
+        self.bottom_space_label = tk.Label(self.master, text="")
+        self.bottom_space_label.pack()
+
+        self.result_label = tk.Label(self.master, text="", font=("Helvetica", 120))
+        self.result_label.pack()
+
+        self.generate_button = tk.Button(self.master, text="랜덤 숫자 생성", command=self.on_generate_button_click)
+        self.generate_button.pack()
+
+    def on_generate_button_click(self):
+        try:
+            max_number = int(self.entry_max_number.get())
+            if max_number < 1:
+                raise ValueError("최대 숫자는 1 이상이어야 합니다.")
+
+            random_number = self.rng.generate_random_number(max_number)
+            self.result_label.config(text=f"당첨 번호 : {random_number}")
+        except ValueError as e:
+            messagebox.showerror("에러", str(e))
+
 class RandomNumberGenerator:
     def __init__(self):
         self.generated_numbers = set()
@@ -18,37 +57,7 @@ class RandomNumberGenerator:
         self.generated_numbers.add(random_number)
         return random_number
 
-root = tk.Tk()
-root.title("AI소프트웨어학과 경품 추첨기")
-
-root.geometry("1000x300")
-
-rng = RandomNumberGenerator()
-
-label_max_number = tk.Label(root, text="최대 숫자:")
-label_max_number.pack()
-
-entry_max_number = tk.Entry(root)
-entry_max_number.pack()
-
-bottom_space_label = tk.Label(root, text="")
-bottom_space_label.pack()
-
-result_label = tk.Label(root, text="", font=("Helvetica", 120))
-result_label.pack()
-
-def on_generate_button_click():
-    try:
-        max_number = int(entry_max_number.get())
-        if max_number < 1:
-            raise ValueError("최대 숫자는 1 이상이어야 합니다.")
-        
-        random_number = rng.generate_random_number(max_number)
-        result_label.config(text=f"당첨 번호 : {random_number}")
-    except ValueError as e:
-        messagebox.showerror("에러", str(e))
-
-generate_button = tk.Button(root, text="랜덤 숫자 생성", command=on_generate_button_click)
-generate_button.pack()
-
-root.mainloop()
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = RandomNumberGeneratorApp(root)
+    root.mainloop()
